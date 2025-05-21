@@ -1,9 +1,121 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Java {
-    //二分查找
+    //给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
+    public static void sort(int[] array){
+        for (int j = 0; j < array.length -1; j++) {
+        for (int i = 0; i < array.length - 1 -j; i++) {
+            if (array[i] > array[i + 1]) {
+                int tmp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = tmp;
+            }
+        }
+        }
+    }
     public static void main(String[] args) {
-        int[] array = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] arr = new int[]{3, 3, 3, 3, 2, 2};
+        sort(arr);
+        int maxnum = 0;//次数最多的元素
+        int maxCount = 1;//出现的最大次数
+        int tmpConut = 1;//遍历时的次数
+
+        String aaa = Arrays.toString(arr);
+        System.out.println(aaa);
+
+        //Arrays.sort(arr);//对数组进行排序
+
+    }
+    //给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+    public static void main6(String[] args) {
+        int[] arr = new int[]{1, 1, 4, 4, 2, 2, 3};
+        int num = 0;
+        for(int array : arr){
+            num ^= array;
+        }
+        System.out.println(num);
+    }
+
+    //给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。
+    //你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+    //你可以按任意顺序返回答案。
+    //示例 1：
+    //输入：nums = [2,7,11,15], target = 9
+    //输出：[0,1]
+    //解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+    public static void main5(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] nums = new int[5];
+        System.out.print("nums = ");
+        for (int i = 0; i < 5; i++) {
+            nums[i] = scanner.nextInt();
+        }
+        boolean end = false;
+        System.out.print("target = ");
+        int target = scanner.nextInt();
+        for (int i = 0; i < 5; i++) {
+            if(end){
+                break;
+            }
+            for (int j = 0; j < 5; j++) {
+                if (i != j) {
+                    if (nums[i] + nums[j] == target) {
+                        System.out.println("[" + i + "," + j + "]");
+                        end = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (!end) {
+            System.out.println("没找到");
+        }
+    }
+    //冒泡排序
+    public static void main4(String[] args) {
+        int[] array = new int[]{3, 6, 7, 8, 4, 1, 2};
+        for (int n = 0; n < array.length -1; n++) {
+            for (int j = 0; j < array.length -1 -n; j++) {
+                if (array[j] > array[j + 1]) {
+                    int tmp = array[j];
+                    array[j] = array[j +1];
+                    array[j +1] = tmp;
+                }
+            }
+        }
+        String arr = Arrays.toString(array);
+        System.out.println(arr);
+    }
+
+
+    //二分查找
+    public static void main3(String[] args) {
+        int[] array = new int[] {1, 2, 3, 4, 5, 6, 7, 8};
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        int left = 0;
+        int right = array.length - 1;
+        int mid = (left + right) / 2;
+        while(left <= right) {
+            mid = (left + right) / 2;
+            if (input > array[mid]) {
+                left = mid + 1;
+                continue;
+            }
+            if (input < array[mid]) {
+                right = mid - 1;
+                continue;
+            }
+            if (input == array[mid]) {
+                System.out.println("找到了下标是" + mid);
+                break;
+            }
+        }
+        if (left > right) {
+            System.out.println("找不到");
+        }
+
     }
     //调整数组顺序使得奇数位于偶数之前。调整之后，不关心大小顺序。
     //
