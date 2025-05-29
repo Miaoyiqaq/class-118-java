@@ -2,6 +2,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Java {
+    //存在连续三个奇数的数组
+    public static boolean find(int[] array){
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] %2 == 1){
+                count++;
+            }else{
+                count = 0;
+            }
+            if(count == 3)
+                return true;
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        int[] arr = new int[]{1,2,3,4,5,2,7,9};
+        System.out.println(find(arr));
+    }
     //给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
     public static void sort(int[] array){
         for (int j = 0; j < array.length -1; j++) {
@@ -14,14 +32,10 @@ public class Java {
         }
         }
     }
-    public static void main(String[] args) {
+    public static void main7(String[] args) {
         int[] arr = new int[]{3, 3, 3, 3, 2, 2};
         sort(arr);
-        int maxnum = 0;//次数最多的元素
-        int maxCount = 1;//出现的最大次数
-        int tmpConut = 1;//遍历时的次数
-
-        String aaa = Arrays.toString(arr);
+        int aaa = arr[arr.length/2];
         System.out.println(aaa);
 
         //Arrays.sort(arr);//对数组进行排序
