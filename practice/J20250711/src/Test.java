@@ -15,36 +15,34 @@ class Solution {
     }
 }
 
-class Solution1 {
-    public boolean isPalindrome(String s) {
-        s = s.toLowerCase();
+class Solution1 {//判断回形字符
+    public static boolean isPalindrome(String s) {
+        s = s.toLowerCase();//将字符串中大写字母改为小写
         int i = 0;
-        int j = s.length();
-        boolean k = true;
-        while (i < j) {
-            char[] ch = s.toCharArray();
-            for (i = 0; i < s.length(); i++) {
-                if (ch[i] > 96 && ch[i] < 123) {
-                    for (j = s.length(); j > 0; j--) {
-                        if (ch[i] > 96 && ch[i] < 123) {
-                            if (ch[i] != ch[j]) {
-                                k = false;
-                            }
-                        }
-
-                    }
-
-                }
+        int j = s.length() -1;
+        char[] ch = s.toCharArray();//将字符串转化为char数组
+        while (i <= j) {//用双指针判断
+            while (i < j && !Character.isLetterOrDigit(ch[i])) {//如果字符i不是字母则跳过
+                i++;
             }
-        }
-        return k;
+            while (i < j && !Character.isLetterOrDigit(ch[j])) {//如果字符i不是字母则跳过
+                j--;
+            }
+            if (ch[i] != ch[j]) {//判断两个指针的字符是否不同
+                return false;
+            }
+            if(i > j){
+                return true;
+            }
+            i++;
+            j--;
+        }return true;
     }
 }
 public class Test {
     public static void main(String[] args) {
-        String Str = "A man, a plan, a canal: Panama";
-        Solution1 solution1 = new Solution1();
-        System.out.println(solution1.isPalindrome(Str));
+        String Str = " ";
+        System.out.println(Solution1.isPalindrome(Str));
 
     }
 }
