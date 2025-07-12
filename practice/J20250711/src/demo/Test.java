@@ -116,7 +116,7 @@ public class Test {
     //字符串拆分
     //String[] split(String regex)将字符串全部拆分
     //String[] split(String regex,int limit)将字符串以指定格式拆分limit组
-    public static void main(String[] args) {
+    public static void main9(String[] args) {
         String str = "hallo-word-iam-coming";
         String[] s = str.split("-");
         for (String ss : s ) {
@@ -139,4 +139,15 @@ public class Test {
     }
     //字符串截取
     //String substring
+    public static void main10(String[] args) {
+        String s = "helloword";
+        System.out.println(s.substring(5));
+        System.out.println(s.substring(0,5));
+    }
+    //索引从0开始
+    //substring(0,5)为左闭右开
+
+    //StringBuilder&StringBuffer
+    //StringBuilder性能更好
+    //StringBuffer安全性更好
 }
