@@ -1,14 +1,13 @@
 class Solution {
-    public int firstUniqChar(String s) {
-        int[] array = new int[126];
-        char[] ch = s.toCharArray();
-        for (int i = 0; i < s.length(); i++) {
-            array[i]++;
+    public static int firstUniqChar(String s) {
+        int[] arr = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            arr[s.charAt(i) - 'a']++;
         }
-        for (int i = 0; i < s.length(); i++) {
-            array[i]++;
-            if (array[i] == 2) {
-                return ch[i];
+        for (int i = 0; i < n; i++) {
+            if (arr[s.charAt(i) - 'a'] == 1) {
+                return i;
             }
         }
         return -1;
@@ -41,8 +40,24 @@ class Solution1 {//判断回形字符
 }
 public class Test {
     public static void main(String[] args) {
-        String Str = " ";
-        System.out.println(Solution1.isPalindrome(Str));
-
+        String Str = "leetcode";
+        System.out.println(Solution.firstUniqChar(Str));
     }
 }
+
+//        int[] arr = new int[26];//定义一个26元素的数组
+//        int n = s.length();//s字符串的长度为n
+//        for (int i = 0; i < n; i++) {//字符内for循环
+//            arr[s.charAt(i) - 'a']++;//获取到的字符减去字符a来得到正确的字母位置
+//        }
+//        for (int i = 0; i < n; i++) {//二次字符内for循环,当这次循环中的第一个在arr元素中出现的2则为第一个不重复字符
+//
+//            if (arr[s.charAt(i) - 'a'] == 1) {
+//                //判断是否为第一个字符
+//                return i;
+//            }
+//        }
+//        return -1;
+//        //返回判断出的字符
+//        //如果没找到则返回-1
+//    }
