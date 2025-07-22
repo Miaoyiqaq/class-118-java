@@ -8,5 +8,5 @@ public class Test {
         computer.usbDevices(keyBoard);
         computer.usbDevices(mouse);
 
-    }
+    }private 
 }
