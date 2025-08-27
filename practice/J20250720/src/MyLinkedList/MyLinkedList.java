@@ -1,6 +1,6 @@
 package MyLinkedList;
 
-public class MyLinkedList {
+class MyLinkedList {
     public static class LinkNode {
         private int val;
         private LinkNode next;
