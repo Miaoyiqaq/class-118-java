@@ -1,9 +1,9 @@
 package MyLinkedList;
 
-class MyLinkedList {
+public class MyLinkedList {
     public static class LinkNode {
-        private int val;
-        private LinkNode next;
+        public int val;
+        public LinkNode next;
 
         public LinkNode(int val) {
             this.val = val;
@@ -11,7 +11,7 @@ class MyLinkedList {
 
     }
 
-    private LinkNode head;//头地址
+    public LinkNode head;//头地址
 
     public void createNode() {
         LinkNode node = new LinkNode(3);
@@ -39,7 +39,7 @@ class MyLinkedList {
         LinkNode tmp = head;
         if(tmp == null){
             head = new LinkNode(val);
-            tmp = head;
+            return;
         }
         else {
             while (tmp.next != null) {
