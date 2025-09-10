@@ -1,6 +1,10 @@
+package Stack;
+
+import Stack.StackEmptyException;
+
 import java.util.Arrays;
 
-public class MyStack extends StackEmptyException{
+public class MyStack extends StackEmptyException {
     public int[] elem;
     public int usedSize = 0;
 
