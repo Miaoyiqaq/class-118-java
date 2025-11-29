@@ -2,6 +2,13 @@ public class Test {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
+        System.out.println("层序遍历");
+        binaryTree.levelOrder(binaryTree.root);
+        Solution.levelOrder(binaryTree.root);
+    }
+    public static void main1(String[] args) {
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.createBinaryTree();
         System.out.println("前序遍历");
         binaryTree.preOrder(binaryTree.root);
         System.out.println();

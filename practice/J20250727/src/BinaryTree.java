@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
      int val;
     BinaryTree left;
@@ -26,10 +29,10 @@ public class BinaryTree {
 
         root = A;
         A.left = B;
-        B.left = D;
-        B.right = E;
+//        B.left = D;
+//        B.right = E;
         A.right = C;
-        C.right = F;
+//        C.right = F;
     }
 
     // 前序遍历
@@ -112,7 +115,21 @@ public class BinaryTree {
         if(root == null){
             return ;
         }
-
+        Queue<BinaryTree> queue = new LinkedList<BinaryTree>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                BinaryTree cur = queue.poll();
+                System.out.print(cur.val + " ");
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
+            }
+        }
     }
     // 判断⼀棵树是不是完全⼆叉树
     boolean isCompleteTree(BinaryTree root){
