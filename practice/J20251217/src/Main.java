@@ -1,9 +1,176 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        try(Reader reader = new FileReader("E:/code/file/1.txt");
+            Writer writer = new FileWriter("E:/code/file/1.txt")) {
+            String str = "你好世界";
+            writer.write(str);
+            //使用flush()方法,否则无输出
+            writer.flush();
+            char[] data = new char[1024];
+            int n = reader.read(data);
+            for (int i = 0; i < n; i++) {
+                System.out.print(data[i]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main13(String[] args) {
+        try(Reader reader = new FileReader("E:/code/file/1.txt");
+            Writer writer = new FileWriter("E:/code/file/1.txt")) {
+            char[] c = {'你','好','世','界'};
+            writer.write(c);
+            //使用flush()方法,否则无输出
+            writer.flush();
+            char[] data = new char[1024];
+            int n = reader.read(data);
+            for (int i = 0; i < n; i++) {
+                System.out.print(data[i]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main12(String[] args) {
+        try(Reader reader = new FileReader("E:/code/file/1.txt");
+            Writer writer = new FileWriter("E:/code/file/1.txt")) {
+            writer.write('你');
+            writer.write('好');
+            writer.write('世');
+            writer.write('界');
+            //使用flush()方法,否则无输出
+            writer.flush();
+            char[] data = new char[1024];
+            int n = reader.read(data);
+            for (int i = 0; i < n; i++) {
+                System.out.print(data[i]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main11(String[] args) {//// 提前在该目录下创建对应的文件 , 内容填写为 你好世界
+        try(Reader reader = new FileReader("E:/code/file/1.txt")) {
+            while(true) {
+                char[] data = new char[1024];
+                int n = reader.read(data);
+                if(n == -1) {
+                    break;
+                }
+                for (int i = 0; i < n; i++) {
+                    System.out.println(data[i]);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main10(String[] args) {//// 提前在该目录下创建对应的文件 , 内容填写为 你好世界
+        try(Reader reader = new FileReader("E:/code/file/1.txt")) {
+            while(true) {
+                int data = reader.read();
+                if(data == -1) {
+                    break;
+                }
+                System.out.print((char)data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main9(String[] args) {
+        try(OutputStream outputStream = new FileOutputStream("E:/code/file/1.txt",true);
+            InputStream inputStream = new FileInputStream("E:/code/file/1.txt")){
+            //写入文件内容
+            byte[] bytes = {97,98,99};
+            outputStream.write(bytes);
+            //写入后读取
+            while(true) {
+                int data = inputStream.read();
+                if(data == -1) {
+                    break;
+                }
+                System.out.print((char)data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main8(String[] args) {
+        //提前在该目录下创建对应的文件,内容填写为abc
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("E:/code/file/1.txt");
+            while (true) {
+                int data = inputStream.read();
+                if(data == -1) {
+                    break;
+                }
+                System.out.print((char)data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public static void main6(String[] args) {
+        //提前在该目录下创建对应的文件,内容填写为abc
+        try(InputStream inputStream = new FileInputStream("E:/code/file/1.txt")) {
+            byte[] data = new byte[1024];
+            //去掉while循环
+            int n = inputStream.read(data,0,1);
+            for (int i = 0; i < n; i++) {
+                System.out.println((char)data[i]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main5(String[] args) {
+        //提前在该目录下创建对应的文件,内容填写为abc
+        try(InputStream inputStream = new FileInputStream("E:/code/file/1.txt")) {
+            while(true) {
+                //data的长度可以自定义
+                byte[] data = new byte[1024];
+                int  n = inputStream.read(data);
+                if(n == -1) {
+                    break;
+                }
+
+                for (int i = 0; i < n; i++) {
+                    //不能直接打印内容,得转换为char
+                    //System.out.print(data[i]);
+                    //正确的打印方法
+                    System.out.print((char)data[i]);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main4(String[] args) {
+        //提前在该目录下创建对应的文件,内容填写为abc
+        try(InputStream inputStream = new FileInputStream("E:/code/file/1.txt");) {
+            while(true) {
+                int data = inputStream.read();
+                if(data == -1) {
+                    break;
+                }
+                System.out.print((char)data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main3(String[] args) throws IOException {
         //创建旧文件对象
         File oldFile = new File("E:/code/file/1.txt");
         //创建新文件对象
