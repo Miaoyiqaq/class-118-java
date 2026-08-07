@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>J20260323</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <!-- 以下为添加依赖流程 -->
+    <!-- 1. 依赖集合标签 -->
+    <dependencies>
+        <!-- 2. 单个依赖项标签，每一个第三方jar包都用这个包裹 -->
+        <dependency>
+            <!-- 3. 组织/公司/项目唯一标识 -->
+            <groupId>com.mysql</groupId>
+            <!-- 4. 项目构件名，当前库的名字 -->
+            <artifactId>mysql-connector-j</artifactId>
+            <!-- 5. 依赖包的版本号 -->
+            <version>9.4.0</version>
+
+            <exclusions>
+                <!-- 单条排除规则，用来剔除指定第三方包 -->
+                <exclusion>
+                    <!-- 需要被排除的依赖的厂商groupId -->
+                    <groupId>com.google.protobuf</groupId>
+                    <!-- 需要被排除的依赖的构件artifactId -->
+                    <artifactId>protobuf-java</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+</project>
