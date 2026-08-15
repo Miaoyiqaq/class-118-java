@@ -1,11 +1,14 @@
 package org.example.bookdemo.dao;
 
 import org.example.bookdemo.model.BookInfo;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
+//@Component//使用Spring容器创建BookDao对象
+@Repository
 public class BookDao {
     public List<BookInfo> mockBookData() {
         List<BookInfo> bookInfos = new ArrayList<>(15);
