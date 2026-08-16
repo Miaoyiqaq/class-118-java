@@ -1,0 +1,11 @@
+2026-08-16T20:34:10.240+08:00  INFO 9224 --- [string-ioc-demo] [main] o.e.s.StringIocDemoApplication           : Starting StringIocDemoApplication using Java 17.0.9 with PID 9224 (E:\code\class-118-java\practice\sping-boot\string-ioc-demo\target\classes started by my in E:\code\class-118-java\practice\sping-boot\string-ioc-demo)
+2026-08-16T20:34:10.251+08:00 DEBUG 9224 --- [string-ioc-demo] [main] o.e.s.StringIocDemoApplication           : Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-08-16T20:34:10.252+08:00  INFO 9224 --- [string-ioc-demo] [main] o.e.s.StringIocDemoApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-08-16T20:34:11.289+08:00  INFO 9224 --- [string-ioc-demo] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-16T20:34:11.307+08:00  INFO 9224 --- [string-ioc-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-16T20:34:11.308+08:00  INFO 9224 --- [string-ioc-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-16T20:34:11.362+08:00  INFO 9224 --- [string-ioc-demo] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1058 ms
+2026-08-16T20:34:11.757+08:00  INFO 9224 --- [string-ioc-demo] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-16T20:34:11.763+08:00  INFO 9224 --- [string-ioc-demo] [main] o.e.s.StringIocDemoApplication           : Started StringIocDemoApplication in 2.169 seconds (process running for 2.563)
+2026-08-16T20:51:28.865+08:00  INFO 9224 --- [string-ioc-demo] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-16T20:51:29.265+08:00  INFO 9224 --- [string-ioc-demo] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete

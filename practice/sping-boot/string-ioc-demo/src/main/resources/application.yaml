@@ -16,3 +16,14 @@ dbtypes:
     k1: v1
     k2: v2
     k3: v3
+logging:
+  level:
+    root: info
+    org.example.stringiocdemo: trace
+  file:
+    # name 优先级高于 path
+    path: logger
+    name: springboot.log
+  logback:
+    rollingpolicy:
+      max-file-size: 20MB

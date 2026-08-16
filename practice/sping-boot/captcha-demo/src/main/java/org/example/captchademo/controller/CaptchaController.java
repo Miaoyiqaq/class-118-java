@@ -28,8 +28,6 @@ public class CaptchaController {
         //定义图形验证码的长和宽
         LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(captchaProperties.getWidth(), captchaProperties.getHeight());
 
-        System.out.println(captchaProperties.getWidth());
-        System.out.println(captchaProperties.getHeight());
         String code = lineCaptcha.getCode();
         session.setAttribute(captchaProperties.getSession().getCode(), code);
         session.setAttribute(captchaProperties.getSession().getDate(), System.currentTimeMillis());
