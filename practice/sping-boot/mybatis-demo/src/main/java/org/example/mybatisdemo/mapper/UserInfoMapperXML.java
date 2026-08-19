@@ -31,5 +31,15 @@ public interface UserInfoMapperXML {
 
     Integer updateUserById(UserInfo userInfo);
 
+    List<UserInfo> getListByOrder(String order);
 
+    List<UserInfo> getListByLike(String username);
+
+    Integer insertUserInfoByCondition(UserInfo userInfo);
+
+    List<UserInfo> queryByCondition(UserInfo userInfo);
+
+    Integer updateByCondition(UserInfo userInfo);
+
+    void batchDelete(List<Integer> ids);
 }

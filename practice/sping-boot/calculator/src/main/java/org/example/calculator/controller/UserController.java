@@ -1,4 +1,4 @@
-package org.example.calculator;
+package org.example.calculator.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.util.StringUtils;

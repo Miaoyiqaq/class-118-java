@@ -1,4 +1,4 @@
-package org.example.calculator;
+package org.example.calculator.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

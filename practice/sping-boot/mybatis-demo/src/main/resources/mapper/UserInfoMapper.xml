@@ -4,11 +4,67 @@
     <insert id="insertUser">
         insert into user_info (`username`, `password`, `age`) values( #{userName}, #{password} ,#{age})
     </insert>
+    <insert id="insertUserInfoByCondition">
+        <trim suffixOverrides=",">
+            insert into user_info(username, password, age,
+            <if test="gender!= null">
+                gender,
+            </if>
+            phone)
+        </trim>
+        <trim suffixOverrides=",">
+            values (#{userName}, #{password}, #{age},
+            <if test="gender!=null">
+                #{gender},
+            </if>
+             #{phone})
+        </trim>
+    </insert>
     <update id="updateUserById">
         update user_info set username = #{userName} where id = #{id};
     </update>
+    <update id="updateByCondition">
+        update user_info
+<!--        set-->
+<!--        <trim suffixOverrides=",">-->
+<!--            <if test = "userName!=null">-->
+<!--                 username=#{userName},-->
+<!--            </if>-->
+<!--            <if test = "age!=null">-->
+<!--                age = #{age},-->
+<!--            </if>-->
+<!--            <if test = "gender!=null">-->
+<!--                gender = #{gender},-->
+<!--            </if>-->
+<!--            <if test = "deleteFlag!=null">-->
+<!--                delete_flag = #{deleteFlag}-->
+<!--            </if>-->
+<!--        </trim>-->
+
+    <set>
+        <if test = "userName!=null">
+             username=#{userName},
+        </if>
+        <if test = "age!=null">
+            age = #{age},
+        </if>
+        <if test = "gender!=null">
+            gender = #{gender},
+        </if>
+        <if test = "deleteFlag!=null">
+            delete_flag = #{deleteFlag}
+        </if>
+        </set>n
+        where id = #{id}
+    </update>
     <delete id="deleteUserById">
         delete from user_info where id = #{id};
+    </delete>
+    <delete id="batchDelete">
+        delete from user_info where id in
+        <foreach collection="ids" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="getList" resultType="org.example.mybatisdemo.model.UserInfo">
@@ -22,5 +78,25 @@
     </select>
     <select id="getListByNameAndPassword2" resultType="org.example.mybatisdemo.model.UserInfo">
         select * from user_info where username = #{usn} and password = #{pad};
+    </select>
+    <select id="getListByOrder" resultType="org.example.mybatisdemo.model.UserInfo">
+        select * from user_info order by id ${order};
+    </select>
+    <select id="getListByLike" resultType="org.example.mybatisdemo.model.UserInfo">
+        select * from user_info where username like '%${username}%';
+    </select>
+    <select id="queryByCondition" resultType="org.example.mybatisdemo.model.UserInfo">
+        select * from user_info where 1=1
+        <trim prefixOverrides="AND">
+            <if test="age!=null">
+                age = #{age}
+            </if>
+            <if test="gender!=null">
+                AND gender = #{gender}
+            </if>
+            <if test="deleteFlag!=null">
+                AND delete_flag = #{deleteFlag}
+            </if>
+        </trim>
     </select>
 </mapper>
