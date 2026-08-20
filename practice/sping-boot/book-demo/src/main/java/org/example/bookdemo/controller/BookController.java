@@ -3,6 +3,8 @@ package org.example.bookdemo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.bookdemo.mapper.BookInfoMapper;
 import org.example.bookdemo.model.BookInfo;
+import org.example.bookdemo.model.PageRequest;
+import org.example.bookdemo.model.PageResponse;
 import org.example.bookdemo.server.BookServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -24,6 +26,12 @@ public class BookController {
     public List<BookInfo> getList() {
         List<BookInfo> bookInfoList = bookServer.getList();
         return bookInfoList;
+    }
+    @GetMapping("/getListByPage")
+    public PageResponse<BookInfo> getListByPage(PageRequest pageRequest) {
+        log.info("pageRequest={}", pageRequest);
+        PageResponse<BookInfo> response = bookServer.getListByPage(pageRequest);
+        return response;
     }
     @PostMapping("/addBook")
     public String addBook(BookInfo bookInfo) {
