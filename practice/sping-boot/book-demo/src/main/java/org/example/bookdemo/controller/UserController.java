@@ -1,5 +1,6 @@
 package org.example.bookdemo.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.example.bookdemo.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,13 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/login")
-    public boolean login(String name, String password) {
+    public boolean login(String name, String password, HttpSession session) {
         log.info("用户登录:" + name);
         if(!StringUtils.hasText(name) || !StringUtils.hasText(password)){
             log.warn("用户名或密码为空");
             return false;
         }
-//        //todo 写死
-//        if("admin".equals(name) && "admin".equals(password)){
-//            return true;
-//        }
-
-        return  userService.checkPassword(name, password);
+        return  userService.checkPassword(name, password,session);
     }
 
 }

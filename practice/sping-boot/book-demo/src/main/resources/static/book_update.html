@@ -23,26 +23,26 @@
         </div>
 
         <form id="updateBook">
-            <input type="hidden" class="form-control" id="bookId" name="id">
+            <input type="hidden" class="form-control" id="bookId" name="BookId">
             <div class="form-group">
                 <label for="bookName">图书名称:</label>
                 <input type="text" class="form-control" id="bookName" name="bookName">
             </div>
             <div class="form-group">
                 <label for="bookAuthor">图书作者</label>
-                <input type="text" class="form-control" id="bookAuthor" name="author" />
+                <input type="text" class="form-control" id="bookAuthor" name="bookAuthor" />
             </div>
             <div class="form-group">
                 <label for="bookStock">图书库存</label>
-                <input type="text" class="form-control" id="bookStock" name="count" />
+                <input type="text" class="form-control" id="bookStock" name="bookCount" />
             </div>
             <div class="form-group">
                 <label for="bookPrice">图书定价：</label>
-                <input type="number" class="form-control" id="bookPrice" name="price">
+                <input type="number" class="form-control" id="bookPrice" name="bookPrice">
             </div>
             <div class="form-group">
                 <label for="bookPublisher">出版社</label>
-                <input type="text" id="bookPublisher" class="form-control" name="publish" />
+                <input type="text" id="bookPublisher" class="form-control" name="bookPublish" />
             </div>
             <div class="form-group">
                 <label for="bookStatus">图书状态</label>
@@ -65,17 +65,16 @@
             $.ajax({
                 type: "get",
                 url: "/book/queryBookById" + location.search,
-                success: function (result) {
-                    if (result != null && result.code == 200) {
-                        let bookInfo = result.data;
-                        $("#bookId").val(bookInfo.id);
+                success: function (bookInfo) {
+                         // let bookInfo = result.data;
+                        $("#bookId").val(bookInfo.bookId);
                         $("#bookName").val(bookInfo.bookName);
-                        $("#bookAuthor").val(bookInfo.author);
-                        $("#bookStock").val(bookInfo.count);
-                        $("#bookPrice").val(bookInfo.price);
-                        $("#bookPublisher").val(bookInfo.publish);
-                        $("#bookStatus").val(bookInfo.status);
-                    }
+                        $("#bookAuthor").val(bookInfo.bookAuthor);
+                        $("#bookStock").val(bookInfo.bookCount);
+                        $("#bookPrice").val(bookInfo.bookPrice);
+                        $("#bookPublisher").val(bookInfo.bookPublish);
+                        $("#bookStatus").val(bookInfo.bookStatus);
+
 
                 },
                 error: function(error){
@@ -96,10 +95,10 @@
                 url: "/book/updateBook",
                 data: $("#updateBook").serialize(),
                 success: function (result) {
-                    if (result!=null && result.data=="") {
+                    if (result=="") {
                         location.href = "book_list.html"
                     } else {
-                        alert(result.data);
+                        alert(result);
                     }
                 },
                 error: function(error){

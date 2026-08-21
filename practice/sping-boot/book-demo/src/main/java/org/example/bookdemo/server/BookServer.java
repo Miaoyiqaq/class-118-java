@@ -2,11 +2,9 @@ package org.example.bookdemo.server;
 
 import org.example.bookdemo.mapper.BookInfoMapper;
 import org.example.bookdemo.model.BookInfo;
-import org.example.bookdemo.dao.BookDao;
 import org.example.bookdemo.model.PageRequest;
 import org.example.bookdemo.model.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,18 +12,9 @@ import java.util.List;
 @Service
 public class BookServer {
     @Autowired//从Spring容器中取出BookDao对象
-    private BookDao bookDao;
-    @Autowired
     private BookInfoMapper bookInfoMapper;
 
-    public List<BookInfo> getList() {
-//        BookDao bookDao = new BookDao();
-        List<BookInfo> bookInfos = bookDao.mockBookData();
-        for (BookInfo bookInfo : bookInfos) {
-            setStatus(bookInfo);
-        }
-        return bookInfos;
-    }
+
     private void setStatus(BookInfo bookInfo) {
         if (bookInfo.getBookStatus() == 1) {
             bookInfo.setBookStatusCN("可借阅");
@@ -53,5 +42,24 @@ public class BookServer {
             setStatus(bookInfo);
         }
         return new PageResponse<>(count, bookInfos);
+    }
+
+    public BookInfo queryBookById(Integer bookId) {
+        return bookInfoMapper.queryBookById(bookId);
+    }
+
+    public Integer updateBook(BookInfo bookInfo) {
+        return bookInfoMapper.updateBook(bookInfo);
+    }
+
+    public Integer deleteBook(Integer bookId) {
+        BookInfo bookInfo = new BookInfo();
+        bookInfo.setBookId(bookId);
+        bookInfo.setBookStatus(0);
+        return bookInfoMapper.updateBook(bookInfo);
+    }
+
+    public void batchDelete(List<Integer> bookIds) {
+        bookInfoMapper.batchDelete(bookIds);
     }
 }

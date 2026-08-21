@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.bookdemo.mapper.BookInfoMapper">
+
+    <update id="updateBook">
+        update book_info
+        <set>
+            <if test="bookName!=null">
+                book_name = #{bookName},
+            </if>
+            <if test="bookAuthor!=null">
+                author = #{bookAuthor},
+            </if>
+            <if test="bookCount!=null">
+                count = #{bookCount},
+            </if>
+            <if test="bookPrice!=null">
+                price = #{bookPrice},
+            </if>
+            <if test="bookPublish!=null">
+                publish = #{bookPublish},
+            </if>
+            <if test="bookStatus!=null">
+                status = #{bookStatus},
+            </if>
+        </set>
+        where id = #{bookId}
+    </update>
+
+    <update id="batchDelete">
+        update book_info
+        <set>
+            status = 0
+        </set>
+        where id in
+        <foreach collection="bookIds" item="bookId" open="(" close=")" separator=",">
+            #{bookId}
+        </foreach>
+    </update>
+</mapper>

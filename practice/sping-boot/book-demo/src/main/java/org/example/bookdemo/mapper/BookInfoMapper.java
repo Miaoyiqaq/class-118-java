@@ -30,4 +30,13 @@ public interface BookInfoMapper {
     })
     @Select("select * from book_info where status<>0 limit #{offset}, #{pageSize}")
     List<BookInfo> getListByPage(PageRequest pageRequest);
+
+    @ResultMap("bookInfoMap")
+    @Select("select * from book_info where id=#{bookId} and status<>0")
+    BookInfo queryBookById(Integer bookId);
+
+
+    Integer updateBook(BookInfo bookInfo);
+
+    void batchDelete(List<Integer> bookIds);
 }
