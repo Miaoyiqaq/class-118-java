@@ -76,9 +76,18 @@
             $.ajax({
                 type: "get",
                 url: "/book/getListByPage" + location.search,
-                success: function (books) {
+                success: function (result) {
+                    if(result==null) {
+                        return;
+                    }
+                    if(result.code==-1 ) {
+                        location.href= "login.html"
+                    }
+                    if(result.data==null) {
+                        return;
+                    }
                     let finalHtml = "";
-                    for (let book of books.records) {
+                    for (let book of result.data.records) {
                         finalHtml += '<tr>'
                         finalHtml += '<td><input type="checkbox" name="selectBook" value="'+book.bookId+'" id="selectBook" class="book-select"></td>'
                         finalHtml += '<td>'+book.bookId+'</td>'
@@ -98,7 +107,7 @@
 
                     //翻页信息
                     $("#pageContainer").jqPaginator({
-                        totalCounts: books.total, //总记录数
+                        totalCounts: result.data.total, //总记录数
                         pageSize: 10,    //每页的个数
                         visiblePages: 5, //可视页数
                         currentPage: currentPage,  //当前页码

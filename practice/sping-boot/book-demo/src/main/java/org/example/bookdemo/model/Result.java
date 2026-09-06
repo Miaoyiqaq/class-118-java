@@ -29,5 +29,11 @@ public class Result<T> {
         result.setData(data);
         return result;
     }
+    public static <T> Result fail(String message) {
+        Result result = new Result();
+        result.setCode(ResultCode.FAIL.getCode());
+        result.setMessage(message);
+        return result;
+    }
 
 }

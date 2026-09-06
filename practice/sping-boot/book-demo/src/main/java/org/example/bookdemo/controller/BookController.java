@@ -21,10 +21,10 @@ public class BookController {
 
     @GetMapping("/getListByPage")
     public Result<PageResponse<BookInfo>> getListByPage(PageRequest pageRequest, HttpSession session) {
-        if(session.getAttribute("userName") == null){
-            log.info("用户未登录");
-            return Result.unLogin();
-        }
+//        if(session.getAttribute("userName") == null){
+//            log.info("用户未登录");
+//            return Result.unLogin();
+//        }
         log.info("pageRequest={}", pageRequest);
         PageResponse<BookInfo> response = bookServer.getListByPage(pageRequest);
         return Result.success(response);
@@ -53,6 +53,10 @@ public class BookController {
     public BookInfo queryBookById(Integer bookId) {
         log.info("查询图书id:" + bookId);
         BookInfo bookInfo = bookServer.queryBookById(bookId);
+        if(bookInfo == null){
+            log.info("查询信息为空");
+            return null;
+        }
         log.info(bookInfo.toString());
         return bookInfo;
     }
