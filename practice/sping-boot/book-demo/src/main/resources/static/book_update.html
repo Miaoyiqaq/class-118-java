@@ -65,8 +65,9 @@
             $.ajax({
                 type: "get",
                 url: "/book/queryBookById" + location.search,
-                success: function (bookInfo) {
-                         // let bookInfo = result.data;
+                success: function (result) {
+                    if(result != null && result.code == 200) {
+                         let bookInfo = result.data;
                         $("#bookId").val(bookInfo.bookId);
                         $("#bookName").val(bookInfo.bookName);
                         $("#bookAuthor").val(bookInfo.bookAuthor);
@@ -74,14 +75,13 @@
                         $("#bookPrice").val(bookInfo.bookPrice);
                         $("#bookPublisher").val(bookInfo.bookPublish);
                         $("#bookStatus").val(bookInfo.bookStatus);
-
+                    }
 
                 },
                 error: function(error){
                     if(error.status==401){
                         location.href = "login.html";
                     }
-                    
                 }
             });
         }
@@ -95,10 +95,10 @@
                 url: "/book/updateBook",
                 data: $("#updateBook").serialize(),
                 success: function (result) {
-                    if (result=="") {
+                    if (result != null && result.data=="") {
                         location.href = "book_list.html"
                     } else {
-                        alert(result);
+                        alert(result.data);
                     }
                 },
                 error: function(error){

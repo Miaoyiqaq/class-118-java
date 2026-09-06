@@ -124,6 +124,11 @@
                             console.log("第" + page + "页, 类型:" + type);
                         }
                     });
+                },
+                error: function(error){
+                    if(error.status==401){
+                        location.href = "login.html";
+                    }
                 }
             });
         }
@@ -138,11 +143,11 @@
                     type:"post",
                     url: "/book/deleteBook?bookId="+bookId,
                     success: function (result) {
-                        if(result == "") {
+                        if(result != null && result.data == "") {
                             alert("删除成功")
                             location.href = "book_list.html"
                         } else {
-                            alert(result);
+                            alert(result.message);
                         }
                     }
                 });
@@ -161,11 +166,16 @@
                     type:"post",
                     url: "/book/batchDeleteBook?bookIds="+ids,
                     success: function (result) {
-                        if(result == "") {
+                        if(result != null && result.data == "") {
                             alert("批量删除成功");
                             location.href = "book_list.html"
                         } else {
-                            alert(result);
+                            alert(result.message);
+                        }
+                    },
+                    error: function(error){
+                        if(error.status==401){
+                            location.href = "login.html";
                         }
                     }
                 })

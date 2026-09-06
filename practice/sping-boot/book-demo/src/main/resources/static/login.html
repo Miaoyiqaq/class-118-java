@@ -43,7 +43,7 @@
                 },
                 success: function (result) {
                     //TODO 校验不充分
-                    if (result!=null && result) {
+                    if (result!=null && result.data) {
                         location.href = "book_list.html";
                     }else {
                         alert("账号或密码不正确");
