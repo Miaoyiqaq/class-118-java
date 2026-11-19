@@ -1,0 +1,3 @@
+com\example\springblogdemo\SpringBlogDemoApplicationTests.class
+com\example\springblogdemo\common\util\SecurityUtilsTest.class
+com\example\springblogdemo\JWTTest.class
