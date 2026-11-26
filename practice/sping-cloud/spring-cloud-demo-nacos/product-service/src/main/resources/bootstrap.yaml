@@ -1,0 +1,11 @@
+#配置中心相关配置
+spring:
+  application:
+    name: product-service
+  profiles:
+    active: @profile.name@
+  cloud:
+    nacos:
+      config:
+        server-addr: 101.34.79.17:8848
+#        namespace: 5b4d0693-0261-4baf-bf3b-9dfafb35ece6
