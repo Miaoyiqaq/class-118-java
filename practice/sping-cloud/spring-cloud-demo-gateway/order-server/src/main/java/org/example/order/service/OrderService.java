@@ -20,6 +20,9 @@ public class OrderService {
         OrderInfo orderInfo = orderMapper.selectOrderById(orderId);
 //        String url = "http://product-service/product/" + orderInfo.getProductId();
 //        ProductInfo productInfo = restTemplate.getForObject(url, ProductInfo.class);
+        if(orderInfo == null){
+            return null;
+        }
         ProductInfo productInfo = productApi.getProductInfoById(orderInfo.getProductId());
         orderInfo.setProductInfo(productInfo);
         return orderInfo;
